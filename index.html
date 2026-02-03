@@ -2,7 +2,7 @@
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Shivesh Castings | Built to Meet Engineering Standards</title>
     
     <!-- SEO & Meta Tags -->
@@ -144,23 +144,85 @@
         .nav-link:not(.active) {
             color: #1a1a1a;
         }
+
+        /* Mobile specific fixes */
+        @media (max-width: 768px) {
+            body {
+                overflow-x: hidden;
+            }
+            
+            /* Fix mobile menu */
+            #mobile-menu {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: #E5E1D8;
+                border-top: 1px solid #ddd;
+                z-index: 50;
+            }
+            
+            /* Fix hero section */
+            #home {
+                height: calc(100vh - 100px) !important;
+                min-height: 500px;
+            }
+            
+            /* Fix navigation logo alignment */
+            #navbar .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            
+            /* Fix about section stats card on mobile */
+            .about-stats-mobile {
+                position: relative !important;
+                right: auto !important;
+                top: auto !important;
+                margin-top: 2rem;
+                width: 100%;
+            }
+            
+            /* Fix commitment cards text color */
+            .commitment-card {
+                color: #000 !important;
+            }
+            
+            /* Ensure images don't overflow */
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+            
+            /* Fix products grid */
+            #products .grid {
+                display: grid !important;
+            }
+            
+            /* Fix contact form */
+            #contact form input,
+            #contact form textarea {
+                font-size: 16px; /* Prevents zoom on iOS */
+            }
+        }
     </style>
 </head>
 <body class="bg-brand-cream text-gray-800 font-body overflow-x-hidden">
 
     <!-- LOADING SCREEN -->
     <div id="loader">
-        <img src="assets/logo.png" alt="Shivesh Castings" class="w-40 h-auto mb-4 animate-pulse">
+        <img src="assets/logo.png" alt="Shivesh Castings" class="w-32 md:w-40 h-auto mb-4 animate-pulse">
         <div class="w-48 h-1 bg-gray-300 rounded overflow-hidden">
             <div id="loader-bar" class="h-full bg-brand-orange w-0"></div>
         </div>
     </div>
 
     <!-- TOP BAR - Separate from hero, fixed on top -->
-    <div class="top-bar bg-black text-white py-2 px-6 text-sm">
-        <div class="container mx-auto flex justify-end gap-6">
+    <div class="top-bar bg-black text-white py-2 px-4 md:px-6 text-xs md:text-sm">
+        <div class="container mx-auto flex justify-center md:justify-end gap-4 md:gap-6 flex-wrap">
             <a href="mailto:shiveshcastings@gmail.com" class="flex items-center gap-2 hover:text-brand-orange transition">
-                <i class="fas fa-envelope"></i> shiveshcastings@gmail.com
+                <i class="fas fa-envelope"></i> <span class="hidden sm:inline">shiveshcastings@gmail.com</span>
+                <span class="sm:hidden">Email Us</span>
             </a>
             <a href="tel:+919916771472" class="flex items-center gap-2 hover:text-brand-orange transition">
                 <i class="fas fa-phone"></i> +91 9916771472
@@ -170,9 +232,9 @@
 
     <!-- NAVIGATION -->
     <header id="navbar" class="sticky top-0 w-full z-50 transition-all duration-300 bg-brand-cream/95 backdrop-blur-sm py-4">
-        <div class="container mx-auto px-6 flex justify-between items-center">
-            <a href="#" class="flex items-center gap-2 ml-[-2cm]">
-                <img src="assets/logo.png" alt="Logo" class="h-12 w-auto">
+        <div class="container mx-auto px-4 md:px-6 flex justify-between items-center">
+            <a href="#" class="flex items-center gap-2">
+                <img src="assets/logo.png" alt="Logo" class="h-10 md:h-12 w-auto">
             </a>
             
             <!-- Desktop Menu -->
@@ -184,108 +246,126 @@
             </nav>
 
             <!-- Mobile Menu Button -->
-            <button id="mobile-menu-btn" class="md:hidden text-2xl text-gray-800">
+            <button id="mobile-menu-btn" class="md:hidden text-2xl text-gray-800 p-2">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
         
         <!-- Mobile Menu Dropdown -->
-        <div id="mobile-menu" class="hidden md:hidden bg-brand-cream border-t border-gray-200 absolute w-full">
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-cream border-t border-gray-200 absolute w-full shadow-lg">
             <div class="flex flex-col p-6 gap-4 font-sans font-semibold">
-                <a href="#home" class="text-brand-orange">Home</a>
-                <a href="#about">About</a>
-                <a href="#products">Products</a>
-                <a href="#contact">Contact</a>
+                <a href="#home" class="text-brand-orange py-2 border-b border-gray-200">Home</a>
+                <a href="#about" class="text-gray-800 py-2 border-b border-gray-200">About</a>
+                <a href="#products" class="text-gray-800 py-2 border-b border-gray-200">Products</a>
+                <a href="#contact" class="text-gray-800 py-2">Contact</a>
             </div>
         </div>
     </header>
 
     <!-- HERO SECTION - Starts after top bar and nav -->
-    <section id="home" class="relative w-full overflow-hidden flex items-center justify-center" style="height: calc(100vh - 120px);">
+    <section id="home" class="relative w-full overflow-hidden flex items-center justify-center" style="height: calc(100vh - 120px); min-height: 500px;">
         <!-- Background Image Slideshow -->
         <div id="hero-bg" class="absolute inset-0 w-full h-full z-0">
             <!-- Images will be injected via JS -->
         </div>
         
         <!-- Overlay -->
-        <div class="absolute inset-0 bg-black/40 z-10"></div>
+        <div class="absolute inset-0 bg-black/50 md:bg-black/40 z-10"></div>
 
         <!-- Hero Content -->
-        <div class="relative z-20 text-center text-white px-4">
-            <h1 class="font-sans text-5xl md:text-7xl font-bold mb-4 tracking-tight drop-shadow-lg animate-fade-in">Shivesh Castings</h1>
-            <p class="text-xl md:text-2xl font-light tracking-wide drop-shadow-md mb-12 animate-fade-in" style="animation-delay: 0.2s">Built to Meet Engineering Standards</p>
+        <div class="relative z-20 text-center text-white px-4 w-full max-w-4xl mx-auto">
+            <h1 class="font-sans text-3xl sm:text-5xl md:text-7xl font-bold mb-4 tracking-tight drop-shadow-lg animate-fade-in px-2">Shivesh Castings</h1>
+            <p class="text-lg sm:text-xl md:text-2xl font-light tracking-wide drop-shadow-md mb-8 md:mb-12 animate-fade-in px-4" style="animation-delay: 0.2s">Built to Meet Engineering Standards</p>
             
             <!-- Buttons -->
-            <div class="flex gap-6 justify-center animate-fade-in" style="animation-delay: 0.4s">
-                <a href="#about" class="bg-brand-orange hover:bg-white hover:text-brand-orange text-white font-bold py-3 px-8 rounded transition duration-300">EXPLORE MORE</a>
-                <a href="#contact" class="border-2 border-white hover:bg-white hover:text-black text-white font-bold py-3 px-8 rounded transition duration-300">CONTACT US</a>
+            <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center animate-fade-in px-4" style="animation-delay: 0.4s">
+                <a href="#about" class="bg-brand-orange hover:bg-white hover:text-brand-orange text-white font-bold py-3 px-6 md:px-8 rounded transition duration-300 w-full sm:w-auto text-center">EXPLORE MORE</a>
+                <a href="#contact" class="border-2 border-white hover:bg-white hover:text-black text-white font-bold py-3 px-6 md:px-8 rounded transition duration-300 w-full sm:w-auto text-center">CONTACT US</a>
             </div>
         </div>
     </section>
 
     <!-- CLIENTS MARQUEE -->
-    <section class="bg-brand-cream py-10 overflow-hidden border-b border-gray-300">
+    <section class="bg-brand-cream py-6 md:py-10 overflow-hidden border-b border-gray-300">
         <div class="relative w-full">
-            <div class="flex gap-12 animate-scroll-left w-[200%]" id="clients-track">
+            <div class="flex gap-8 md:gap-12 animate-scroll-left w-[200%]" id="clients-track">
                 <!-- JS will populate logos twice for seamless loop -->
             </div>
         </div>
     </section>
 
     <!-- ABOUT SECTION -->
-    <section id="about" class="py-20 bg-brand-cream">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl md:text-4xl font-sans font-bold mb-16 text-gray-900 border-l-4 border-brand-orange pl-4 reveal">ABOUT SHIVESH CASTINGS</h2>
+    <section id="about" class="py-12 md:py-20 bg-brand-cream">
+        <div class="container mx-auto px-4 md:px-6">
+            <h2 class="text-2xl md:text-3xl lg:text-4xl font-sans font-bold mb-8 md:mb-16 text-gray-900 border-l-4 border-brand-orange pl-4 reveal">ABOUT SHIVESH CASTINGS</h2>
             
-            <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
                 <!-- Left: Image & Stats -->
-                <div class="relative reveal">
+                <div class="relative reveal order-1">
                     <div class="overflow-hidden rounded-lg shadow-xl relative z-10">
                         <img src="assets/about.jpg" alt="Factory Floor" class="w-full h-auto object-cover transform hover:scale-105 transition duration-700">
                     </div>
-                    <!-- Floating Stats Card -->
-                    <div class="absolute -right-4 top-1/4 bg-white p-6 shadow-2xl z-20 hidden md:block border-l-4 border-brand-orange rounded">
-                        <div class="text-center mb-6">
-                            <h3 class="text-4xl font-bold text-brand-orange"><span class="counter" data-target="35">0</span>+</h3>
+                    <!-- Floating Stats Card - Desktop -->
+                    <div class="hidden md:block absolute -right-4 top-1/4 bg-white p-4 lg:p-6 shadow-2xl z-20 border-l-4 border-brand-orange rounded w-48 lg:w-auto">
+                        <div class="text-center mb-4 lg:mb-6">
+                            <h3 class="text-2xl lg:text-4xl font-bold text-brand-orange"><span class="counter" data-target="35">0</span>+</h3>
                             <p class="text-xs text-gray-500 uppercase tracking-wider">Years Experience</p>
                         </div>
-                        <div class="text-center mb-6 border-t pt-4">
-                            <h3 class="text-4xl font-bold text-brand-orange"><span class="counter" data-target="1020">0</span>+</h3>
+                        <div class="text-center mb-4 lg:mb-6 border-t pt-4">
+                            <h3 class="text-2xl lg:text-4xl font-bold text-brand-orange"><span class="counter" data-target="1020">0</span>+</h3>
                             <p class="text-xs text-gray-500 uppercase tracking-wider">Casting Developments</p>
                         </div>
                         <div class="text-center border-t pt-4">
-                            <h3 class="text-4xl font-bold text-brand-orange"><span class="counter" data-target="490">0</span>+</h3>
+                            <h3 class="text-2xl lg:text-4xl font-bold text-brand-orange"><span class="counter" data-target="490">0</span>+</h3>
                             <p class="text-xs text-gray-500 uppercase tracking-wider">Projects Completed</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Stats Card - Mobile (below image) -->
+                    <div class="md:hidden bg-white p-4 shadow-lg border-l-4 border-brand-orange rounded mt-4">
+                        <div class="grid grid-cols-3 gap-2 text-center">
+                            <div>
+                                <h3 class="text-xl font-bold text-brand-orange"><span class="counter" data-target="35">0</span>+</h3>
+                                <p class="text-xs text-gray-500 uppercase">Years</p>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-brand-orange"><span class="counter" data-target="1020">0</span>+</h3>
+                                <p class="text-xs text-gray-500 uppercase">Castings</p>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-brand-orange"><span class="counter" data-target="490">0</span>+</h3>
+                                <p class="text-xs text-gray-500 uppercase">Projects</p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Right: Text & Illustrator -->
-                <div class="relative reveal delay-100">
-                    <h3 class="text-2xl font-sans font-bold mb-6">Welcome to Shivesh Castings</h3>
-                    <p class="text-gray-700 mb-6 leading-relaxed">
+                <div class="relative reveal delay-100 order-2">
+                    <h3 class="text-xl md:text-2xl font-sans font-bold mb-4 md:mb-6">Welcome to Shivesh Castings</h3>
+                    <p class="text-gray-700 mb-4 md:mb-6 leading-relaxed text-sm md:text-base text-justify">
                         We are a well-established firm engaged in the manufacturing and supplying of graded gray iron castings, with our foundry located at Belgaum and a staff strength of 25 people. We offer a wide range of grey iron castings for engineering products and components used in industries manufacturing valves, pulleys, couplings, crankshafts, helical rotors, counterweights, machine tools, automotive components, and more. We provide customized solutions and package consignments as per client specifications, and under the guidance of our Managing Director, Mr. Maruti Godse, our efficient team and advanced machinery help us meet bulk market demands across our vast client network throughout the country.
                     </p>
-                    <p class="text-gray-700 leading-relaxed">
+                    <p class="text-gray-700 leading-relaxed text-sm md:text-base text-justify">
                         Quality is our prime focus, with quality auditors supervising every stage of production and conducting various tests to ensure supreme product quality. We are certified with ISO 9001:2015 from ICS, and our well-equipped manufacturing unit enables us to meet the huge demands of our clients.
                     </p>
                     
-                    <!-- Background Illustrator -->
-                    <img src="assets/illustrator.png" alt="Illustration" class="absolute -bottom-20 -right-20 w-3/4 opacity-20 pointer-events-none z-0 mix-blend-multiply">
+                    <!-- Background Illustrator - Hidden on small mobile -->
+                    <img src="assets/illustrator.png" alt="Illustration" class="hidden md:block absolute -bottom-20 -right-20 w-3/4 opacity-20 pointer-events-none z-0 mix-blend-multiply">
                 </div>
             </div>
 
             <!-- Leadership Cards -->
-            <div class="grid md:grid-cols-2 gap-8 mt-20">
-                <div class="bg-white p-8 rounded-lg shadow-lg border-l-4 border-brand-orange reveal hover:-translate-y-2 transition duration-300">
-                    <h4 class="font-bold text-xl mb-2">MD - Mr. Maruti Godse</h4>
-                    <p class="text-gray-600 text-sm">
+            <div class="grid md:grid-cols-2 gap-6 md:gap-8 mt-12 md:mt-20">
+                <div class="bg-white p-6 md:p-8 rounded-lg shadow-lg border-l-4 border-brand-orange reveal hover:-translate-y-2 transition duration-300">
+                    <h4 class="font-bold text-lg md:text-xl mb-2">MD - Mr. Maruti Godse</h4>
+                    <p class="text-gray-600 text-xs md:text-sm leading-relaxed">
                         Backed by 35+ years of hands-on experience, our Founder has been the guiding force behind the organization's growth and success. His commitment to quality, ethics, and continuous progress remains the cornerstone of the legacy he proudly continues today.
                     </p>
                 </div>
-                <div class="bg-white p-8 rounded-lg shadow-lg border-l-4 border-brand-orange reveal hover:-translate-y-2 transition duration-300 delay-100">
-                    <h4 class="font-bold text-xl mb-2">CEO - Mr. Nehal Godse</h4>
-                    <p class="text-gray-600 text-sm">
+                <div class="bg-white p-6 md:p-8 rounded-lg shadow-lg border-l-4 border-brand-orange reveal hover:-translate-y-2 transition duration-300 delay-100">
+                    <h4 class="font-bold text-lg md:text-xl mb-2">CEO - Mr. Nehal Godse</h4>
+                    <p class="text-gray-600 text-xs md:text-sm leading-relaxed">
                         A qualified Mechanical Engineer and a young, dynamic leader known for his dedication and passion for work. With a strong technical foundation and a forward-looking mindset, he plays a key role in driving operational excellence, innovation, and sustainable growth.
                     </p>
                 </div>
@@ -294,107 +374,107 @@
     </section>
 
     <!-- OUR COMMITMENT -->
-    <section class="py-20 bg-brand-cream">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl md:text-4xl font-sans font-bold mb-16 text-gray-900 border-l-4 border-brand-orange pl-4 reveal">OUR COMMITMENT</h2>
+    <section class="py-12 md:py-20 bg-brand-cream">
+        <div class="container mx-auto px-4 md:px-6">
+            <h2 class="text-2xl md:text-3xl lg:text-4xl font-sans font-bold mb-8 md:mb-16 text-gray-900 border-l-4 border-brand-orange pl-4 reveal">OUR COMMITMENT</h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
                 <!-- Card 1 -->
-                <div class="bg-brand-card1 p-8 rounded-lg min-h-[300px] flex flex-col justify-between reveal hover:shadow-2xl transition duration-300">
+                <div class="commitment-card bg-brand-card1 p-6 md:p-8 rounded-lg min-h-[250px] md:min-h-[300px] flex flex-col justify-between reveal hover:shadow-2xl transition duration-300">
                     <div>
-                        <span class="text-6xl font-serif font-bold text-black opacity-40">1</span>
-                        <h3 class="text-2xl font-sans font-bold uppercase mt-4 text-black">On-Time Delivery</h3>
+                        <span class="text-4xl md:text-6xl font-serif font-bold text-black opacity-40">1</span>
+                        <h3 class="text-lg md:text-2xl font-sans font-bold uppercase mt-4 text-black">On-Time Delivery</h3>
                     </div>
-                    <p class="mt-4 text-sm text-black">Ensuring timely delivery through efficient production and logistics.</p>
+                    <p class="mt-4 text-xs md:text-sm text-black">Ensuring timely delivery through efficient production and logistics.</p>
                 </div>
                 <!-- Card 2 -->
-                <div class="bg-brand-card2 p-8 rounded-lg min-h-[300px] flex flex-col justify-between reveal hover:shadow-2xl transition duration-300 delay-100">
+                <div class="commitment-card bg-brand-card2 p-6 md:p-8 rounded-lg min-h-[250px] md:min-h-[300px] flex flex-col justify-between reveal hover:shadow-2xl transition duration-300 delay-100">
                     <div>
-                        <span class="text-6xl font-serif font-bold text-black opacity-40">2</span>
-                        <h3 class="text-2xl font-sans font-bold uppercase mt-4 text-black">Customer Satisfaction</h3>
+                        <span class="text-4xl md:text-6xl font-serif font-bold text-black opacity-40">2</span>
+                        <h3 class="text-lg md:text-2xl font-sans font-bold uppercase mt-4 text-black">Customer Satisfaction</h3>
                     </div>
-                    <p class="mt-4 text-sm text-black">Understanding and meeting specific customer needs for high confidence.</p>
+                    <p class="mt-4 text-xs md:text-sm text-black">Understanding and meeting specific customer needs for high confidence.</p>
                 </div>
                 <!-- Card 3 -->
-                <div class="bg-brand-card3 p-8 rounded-lg min-h-[300px] flex flex-col justify-between reveal hover:shadow-2xl transition duration-300 delay-200">
+                <div class="commitment-card bg-brand-card3 p-6 md:p-8 rounded-lg min-h-[250px] md:min-h-[300px] flex flex-col justify-between reveal hover:shadow-2xl transition duration-300 delay-200">
                     <div>
-                        <span class="text-6xl font-serif font-bold text-black opacity-40">3</span>
-                        <h3 class="text-2xl font-sans font-bold uppercase mt-4 text-black">Quality Enhancement</h3>
+                        <span class="text-4xl md:text-6xl font-serif font-bold text-black opacity-40">3</span>
+                        <h3 class="text-lg md:text-2xl font-sans font-bold uppercase mt-4 text-black">Quality Enhancement</h3>
                     </div>
-                    <p class="mt-4 text-sm text-black">Continuous improvement via strict quality control and ISO 9001:2015 standards.</p>
+                    <p class="mt-4 text-xs md:text-sm text-black">Continuous improvement via strict quality control and ISO 9001:2015 standards.</p>
                 </div>
                 <!-- Card 4 -->
-                <div class="bg-brand-card4 p-8 rounded-lg min-h-[300px] flex flex-col justify-between reveal hover:shadow-2xl transition duration-300 delay-300">
+                <div class="commitment-card bg-brand-card4 p-6 md:p-8 rounded-lg min-h-[250px] md:min-h-[300px] flex flex-col justify-between reveal hover:shadow-2xl transition duration-300 delay-300">
                     <div>
-                        <span class="text-6xl font-serif font-bold text-black opacity-40">4</span>
-                        <h3 class="text-2xl font-sans font-bold uppercase mt-4 text-black">Market Expansion</h3>
+                        <span class="text-4xl md:text-6xl font-serif font-bold text-black opacity-40">4</span>
+                        <h3 class="text-lg md:text-2xl font-sans font-bold uppercase mt-4 text-black">Market Expansion</h3>
                     </div>
-                    <p class="mt-4 text-sm text-black">Seeking new customers and industries with reliable products and service.</p>
+                    <p class="mt-4 text-xs md:text-sm text-black">Seeking new customers and industries with reliable products and service.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- DEPARTMENTS -->
-    <section class="py-20 bg-black text-white">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl md:text-4xl font-sans font-bold mb-16 text-brand-orange reveal">OUR DEPARTMENTS</h2>
+    <section class="py-12 md:py-20 bg-black text-white">
+        <div class="container mx-auto px-4 md:px-6">
+            <h2 class="text-2xl md:text-3xl lg:text-4xl font-sans font-bold mb-8 md:mb-16 text-brand-orange reveal">OUR DEPARTMENTS</h2>
 
-            <div class="grid gap-8">
+            <div class="grid gap-6 md:gap-8 max-w-4xl mx-auto">
                 <!-- Dept Item -->
-                <div class="flex gap-6 reveal">
-                    <div class="text-brand-card4 text-2xl mt-1"><i class="fas fa-layer-group"></i></div>
+                <div class="flex gap-4 md:gap-6 reveal">
+                    <div class="text-brand-card4 text-xl md:text-2xl mt-1 flex-shrink-0"><i class="fas fa-layer-group"></i></div>
                     <div>
-                        <h3 class="text-xl font-bold mb-2">Moulding Department</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed">The moulding department is responsible for shaping sand moulds that form the foundation of the casting process. Using controlled sand preparation and moulding techniques, this department ensures accurate dimensions and structural integrity of castings. Proper moulding directly impacts product quality, surface finish, and consistency.</p>
+                        <h3 class="text-lg md:text-xl font-bold mb-2">Moulding Department</h3>
+                        <p class="text-gray-400 text-xs md:text-sm leading-relaxed">The moulding department is responsible for shaping sand moulds that form the foundation of the casting process. Using controlled sand preparation and moulding techniques, this department ensures accurate dimensions and structural integrity of castings. Proper moulding directly impacts product quality, surface finish, and consistency.</p>
                     </div>
                 </div>
                 <!-- Dept Item -->
-                <div class="flex gap-6 reveal">
-                    <div class="text-brand-card3 text-2xl mt-1"><i class="fas fa-shapes"></i></div>
+                <div class="flex gap-4 md:gap-6 reveal">
+                    <div class="text-brand-card3 text-xl md:text-2xl mt-1 flex-shrink-0"><i class="fas fa-shapes"></i></div>
                     <div>
-                        <h3 class="text-xl font-bold mb-2">Core Shop</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed">The core shop plays a vital role in producing internal cavities and complex shapes within castings. Precision-made cores are prepared using high-quality sand and binders to ensure strength and accuracy during metal pouring. This department supports the manufacturing of intricate components used in engineering and automotive applications.</p>
+                        <h3 class="text-lg md:text-xl font-bold mb-2">Core Shop</h3>
+                        <p class="text-gray-400 text-xs md:text-sm leading-relaxed">The core shop plays a vital role in producing internal cavities and complex shapes within castings. Precision-made cores are prepared using high-quality sand and binders to ensure strength and accuracy during metal pouring. This department supports the manufacturing of intricate components used in engineering and automotive applications.</p>
                     </div>
                 </div>
                 <!-- Dept Item -->
-                <div class="flex gap-6 reveal">
-                    <div class="text-brand-orange text-2xl mt-1"><i class="fas fa-fire"></i></div>
+                <div class="flex gap-4 md:gap-6 reveal">
+                    <div class="text-brand-orange text-xl md:text-2xl mt-1 flex-shrink-0"><i class="fas fa-fire"></i></div>
                     <div>
-                        <h3 class="text-xl font-bold mb-2">Melting Department</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed">The melting department handles the controlled melting of grey iron using induction furnaces. Strict temperature control and chemical composition monitoring ensure the molten metal meets required specifications. This department is critical for maintaining material quality, consistency, and mechanical properties of the final castings.</p>
+                        <h3 class="text-lg md:text-xl font-bold mb-2">Melting Department</h3>
+                        <p class="text-gray-400 text-xs md:text-sm leading-relaxed">The melting department handles the controlled melting of grey iron using induction furnaces. Strict temperature control and chemical composition monitoring ensure the molten metal meets required specifications. This department is critical for maintaining material quality, consistency, and mechanical properties of the final castings.</p>
                     </div>
                 </div>
                 <!-- Dept Item -->
-                <div class="flex gap-6 reveal">
-                    <div class="text-brand-card2 text-2xl mt-1"><i class="fas fa-hammer"></i></div>
+                <div class="flex gap-4 md:gap-6 reveal">
+                    <div class="text-brand-card2 text-xl md:text-2xl mt-1 flex-shrink-0"><i class="fas fa-hammer"></i></div>
                     <div>
-                        <h3 class="text-xl font-bold mb-2">Fettling Department</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed">Fettling involves cleaning and finishing cast components after solidification. This department removes excess material, gates, risers, and surface irregularities using grinding and cutting tools. Proper fettling improves appearance, dimensional accuracy, and readiness for further machining or direct use.</p>
+                        <h3 class="text-lg md:text-xl font-bold mb-2">Fettling Department</h3>
+                        <p class="text-gray-400 text-xs md:text-sm leading-relaxed">Fettling involves cleaning and finishing cast components after solidification. This department removes excess material, gates, risers, and surface irregularities using grinding and cutting tools. Proper fettling improves appearance, dimensional accuracy, and readiness for further machining or direct use.</p>
                     </div>
                 </div>
                  <!-- Dept Item -->
-                 <div class="flex gap-6 reveal">
-                    <div class="text-brand-card4 text-2xl mt-1"><i class="fas fa-ruler-combined"></i></div>
+                 <div class="flex gap-4 md:gap-6 reveal">
+                    <div class="text-brand-card4 text-xl md:text-2xl mt-1 flex-shrink-0"><i class="fas fa-ruler-combined"></i></div>
                     <div>
-                        <h3 class="text-xl font-bold mb-2">Pattern Shop</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed">The pattern shop designs and maintains patterns used for mould preparation. Accurate patterns are essential for achieving precise dimensions and repeatable quality. This department supports both standard and customized casting requirements, enabling flexibility in production.</p>
+                        <h3 class="text-lg md:text-xl font-bold mb-2">Pattern Shop</h3>
+                        <p class="text-gray-400 text-xs md:text-sm leading-relaxed">The pattern shop designs and maintains patterns used for mould preparation. Accurate patterns are essential for achieving precise dimensions and repeatable quality. This department supports both standard and customized casting requirements, enabling flexibility in production.</p>
                     </div>
                 </div>
                  <!-- Dept Item -->
-                 <div class="flex gap-6 reveal">
-                    <div class="text-brand-card3 text-2xl mt-1"><i class="fas fa-clipboard-check"></i></div>
+                 <div class="flex gap-4 md:gap-6 reveal">
+                    <div class="text-brand-card3 text-xl md:text-2xl mt-1 flex-shrink-0"><i class="fas fa-clipboard-check"></i></div>
                     <div>
-                        <h3 class="text-xl font-bold mb-2">Quality Control Department</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed">The quality control department ensures that every casting meets defined quality standards. Through inspections, testing, and process monitoring, this department verifies dimensional accuracy, hardness, and material composition. Continuous quality checks help prevent defects and ensure consistent product performance.</p>
+                        <h3 class="text-lg md:text-xl font-bold mb-2">Quality Control Department</h3>
+                        <p class="text-gray-400 text-xs md:text-sm leading-relaxed">The quality control department ensures that every casting meets defined quality standards. Through inspections, testing, and process monitoring, this department verifies dimensional accuracy, hardness, and material composition. Continuous quality checks help prevent defects and ensure consistent product performance.</p>
                     </div>
                 </div>
                  <!-- Dept Item -->
-                 <div class="flex gap-6 reveal">
-                    <div class="text-blue-500 text-2xl mt-1"><i class="fas fa-tools"></i></div>
+                 <div class="flex gap-4 md:gap-6 reveal">
+                    <div class="text-blue-500 text-xl md:text-2xl mt-1 flex-shrink-0"><i class="fas fa-tools"></i></div>
                     <div>
-                        <h3 class="text-xl font-bold mb-2">Maintenance Department</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed">The maintenance department ensures smooth operation of all machinery and equipment. Regular preventive maintenance minimizes breakdowns, improves efficiency, and extends equipment life. This department plays a crucial role in maintaining uninterrupted production and workplace safety.</p>
+                        <h3 class="text-lg md:text-xl font-bold mb-2">Maintenance Department</h3>
+                        <p class="text-gray-400 text-xs md:text-sm leading-relaxed">The maintenance department ensures smooth operation of all machinery and equipment. Regular preventive maintenance minimizes breakdowns, improves efficiency, and extends equipment life. This department plays a crucial role in maintaining uninterrupted production and workplace safety.</p>
                     </div>
                 </div>
             </div>
@@ -402,45 +482,45 @@
     </section>
 
     <!-- CERTIFICATES -->
-    <section class="py-20 bg-brand-cream">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl md:text-4xl font-sans font-bold mb-16 text-gray-900 border-l-4 border-brand-orange pl-4 reveal">OUR CERTIFICATES</h2>
+    <section class="py-12 md:py-20 bg-brand-cream">
+        <div class="container mx-auto px-4 md:px-6">
+            <h2 class="text-2xl md:text-3xl lg:text-4xl font-sans font-bold mb-8 md:mb-16 text-gray-900 border-l-4 border-brand-orange pl-4 reveal">OUR CERTIFICATES</h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-10 max-w-4xl mx-auto">
                 <!-- Cert 1 -->
-                <a href="assets/certificate1.pdf" target="_blank" class="group reveal">
+                <a href="assets/certificate1.pdf" target="_blank" class="group reveal block">
                     <div class="bg-white p-4 rounded-xl shadow-lg hover:shadow-2xl transition transform group-hover:-translate-y-2">
                         <div class="overflow-hidden rounded-lg mb-4 border border-gray-200">
-                            <img src="assets/certificate1.jpg" alt="Zed Bronze" class="w-full h-48 object-cover transform group-hover:scale-110 transition duration-500">
+                            <img src="assets/certificate1.jpg" alt="Zed Bronze" class="w-full h-40 md:h-48 object-cover transform group-hover:scale-110 transition duration-500">
                         </div>
-                        <div class="text-center font-bold text-gray-800">Zed Bronze Certificate</div>
+                        <div class="text-center font-bold text-gray-800 text-sm md:text-base">Zed Bronze Certificate</div>
                     </div>
                 </a>
                 <!-- Cert 2 -->
-                <a href="assets/certificate2.pdf" target="_blank" class="group reveal delay-100">
+                <a href="assets/certificate2.pdf" target="_blank" class="group reveal delay-100 block">
                     <div class="bg-white p-4 rounded-xl shadow-lg hover:shadow-2xl transition transform group-hover:-translate-y-2">
                         <div class="overflow-hidden rounded-lg mb-4 border border-gray-200">
-                            <img src="assets/certificate2.jpg" alt="GST" class="w-full h-48 object-cover transform group-hover:scale-110 transition duration-500">
+                            <img src="assets/certificate2.jpg" alt="GST" class="w-full h-40 md:h-48 object-cover transform group-hover:scale-110 transition duration-500">
                         </div>
-                        <div class="text-center font-bold text-gray-800">GST Registration</div>
+                        <div class="text-center font-bold text-gray-800 text-sm md:text-base">GST Registration</div>
                     </div>
                 </a>
                 <!-- Cert 3 -->
-                <a href="assets/certificate3.pdf" target="_blank" class="group reveal delay-200">
+                <a href="assets/certificate3.pdf" target="_blank" class="group reveal delay-200 block">
                     <div class="bg-white p-4 rounded-xl shadow-lg hover:shadow-2xl transition transform group-hover:-translate-y-2">
                         <div class="overflow-hidden rounded-lg mb-4 border border-gray-200">
-                            <img src="assets/certificate3.jpg" alt="ISO" class="w-full h-48 object-cover transform group-hover:scale-110 transition duration-500">
+                            <img src="assets/certificate3.jpg" alt="ISO" class="w-full h-40 md:h-48 object-cover transform group-hover:scale-110 transition duration-500">
                         </div>
-                        <div class="text-center font-bold text-gray-800">ISO Certificate</div>
+                        <div class="text-center font-bold text-gray-800 text-sm md:text-base">ISO Certificate</div>
                     </div>
                 </a>
                 <!-- Cert 4 -->
-                <a href="assets/certificate4.pdf" target="_blank" class="group reveal delay-300">
+                <a href="assets/certificate4.pdf" target="_blank" class="group reveal delay-300 block">
                     <div class="bg-white p-4 rounded-xl shadow-lg hover:shadow-2xl transition transform group-hover:-translate-y-2">
                         <div class="overflow-hidden rounded-lg mb-4 border border-gray-200">
-                            <img src="assets/certificate4.jpg" alt="Udyam" class="w-full h-48 object-cover transform group-hover:scale-110 transition duration-500">
+                            <img src="assets/certificate4.jpg" alt="Udyam" class="w-full h-40 md:h-48 object-cover transform group-hover:scale-110 transition duration-500">
                         </div>
-                        <div class="text-center font-bold text-gray-800">Udyam Registration</div>
+                        <div class="text-center font-bold text-gray-800 text-sm md:text-base">Udyam Registration</div>
                     </div>
                 </a>
             </div>
@@ -448,109 +528,109 @@
     </section>
 
     <!-- INFRASTRUCTURE -->
-    <section class="py-20 bg-black text-white">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl md:text-4xl font-sans font-bold mb-12 text-brand-orange reveal">OUR INFRASTRUCTURE</h2>
+    <section class="py-12 md:py-20 bg-black text-white">
+        <div class="container mx-auto px-4 md:px-6">
+            <h2 class="text-2xl md:text-3xl lg:text-4xl font-sans font-bold mb-8 md:mb-12 text-brand-orange reveal">OUR INFRASTRUCTURE</h2>
             
-            <div class="rounded-xl overflow-hidden shadow-2xl mb-16 reveal">
+            <div class="rounded-xl overflow-hidden shadow-2xl mb-8 md:mb-16 reveal">
                 <img src="assets/ourinfrastucture.jpg" alt="Infrastructure" class="w-full h-auto object-cover">
             </div>
 
-            <div class="space-y-10 max-w-4xl mx-auto">
+            <div class="space-y-6 md:space-y-10 max-w-4xl mx-auto">
                 <!-- List Item -->
-                <div class="flex gap-6 reveal">
-                    <span class="text-brand-card4 text-3xl font-bold">1</span>
+                <div class="flex gap-4 md:gap-6 reveal">
+                    <span class="text-brand-card4 text-2xl md:text-3xl font-bold flex-shrink-0 w-8">1</span>
                     <div>
-                        <h3 class="text-xl font-bold text-white">Induction Furnace (150 & 300 Kgs)</h3>
-                        <p class="text-gray-400 text-sm mt-2">The induction furnaces enable efficient and controlled melting of grey iron. Their capacity supports both small and medium batch production while ensuring uniform metal quality and energy efficiency.</p>
+                        <h3 class="text-lg md:text-xl font-bold text-white">Induction Furnace (150 & 300 Kgs)</h3>
+                        <p class="text-gray-400 text-xs md:text-sm mt-2">The induction furnaces enable efficient and controlled melting of grey iron. Their capacity supports both small and medium batch production while ensuring uniform metal quality and energy efficiency.</p>
                     </div>
                 </div>
                  <!-- List Item -->
-                 <div class="flex gap-6 reveal">
-                    <span class="text-brand-orange text-3xl font-bold">2</span>
+                 <div class="flex gap-4 md:gap-6 reveal">
+                    <span class="text-brand-orange text-2xl md:text-3xl font-bold flex-shrink-0 w-8">2</span>
                     <div>
-                        <h3 class="text-xl font-bold text-white">Bench Grinder</h3>
-                        <p class="text-gray-400 text-sm mt-2">Bench grinders are used for finishing operations such as edge smoothing and surface cleaning. They help achieve proper dimensional accuracy and improved surface finish during the fettling process.</p>
+                        <h3 class="text-lg md:text-xl font-bold text-white">Bench Grinder</h3>
+                        <p class="text-gray-400 text-xs md:text-sm mt-2">Bench grinders are used for finishing operations such as edge smoothing and surface cleaning. They help achieve proper dimensional accuracy and improved surface finish during the fettling process.</p>
                     </div>
                 </div>
                  <!-- List Item -->
-                 <div class="flex gap-6 reveal">
-                    <span class="text-blue-500 text-3xl font-bold">3</span>
+                 <div class="flex gap-4 md:gap-6 reveal">
+                    <span class="text-blue-500 text-2xl md:text-3xl font-bold flex-shrink-0 w-8">3</span>
                     <div>
-                        <h3 class="text-xl font-bold text-white">Sand Muller</h3>
-                        <p class="text-gray-400 text-sm mt-2">The sand muller ensures uniform mixing of sand, binders, and additives. Proper sand preparation enhances mould strength, surface finish, and casting accuracy.</p>
+                        <h3 class="text-lg md:text-xl font-bold text-white">Sand Muller</h3>
+                        <p class="text-gray-400 text-xs md:text-sm mt-2">The sand muller ensures uniform mixing of sand, binders, and additives. Proper sand preparation enhances mould strength, surface finish, and casting accuracy.</p>
                     </div>
                 </div>
                  <!-- List Item -->
-                 <div class="flex gap-6 reveal">
-                    <span class="text-brand-card2 text-3xl font-bold">4</span>
+                 <div class="flex gap-4 md:gap-6 reveal">
+                    <span class="text-brand-card2 text-2xl md:text-3xl font-bold flex-shrink-0 w-8">4</span>
                     <div>
-                        <h3 class="text-xl font-bold text-white">Pin Lift Moulding Machine</h3>
-                        <p class="text-gray-400 text-sm mt-2">This machine supports efficient and consistent mould production. It improves productivity and ensures uniform compaction of sand moulds, leading to better casting quality.</p>
+                        <h3 class="text-lg md:text-xl font-bold text-white">Pin Lift Moulding Machine</h3>
+                        <p class="text-gray-400 text-xs md:text-sm mt-2">This machine supports efficient and consistent mould production. It improves productivity and ensures uniform compaction of sand moulds, leading to better casting quality.</p>
                     </div>
                 </div>
                  <!-- List Item -->
-                 <div class="flex gap-6 reveal">
-                    <span class="text-brand-card4 text-3xl font-bold">5</span>
+                 <div class="flex gap-4 md:gap-6 reveal">
+                    <span class="text-brand-card4 text-2xl md:text-3xl font-bold flex-shrink-0 w-8">5</span>
                     <div>
-                        <h3 class="text-xl font-bold text-white">Spectrometer</h3>
-                        <p class="text-gray-400 text-sm mt-2">The spectrometer is used to analyze the chemical composition of molten metal. It ensures that material properties meet required specifications, helping maintain consistent casting quality.</p>
+                        <h3 class="text-lg md:text-xl font-bold text-white">Spectrometer</h3>
+                        <p class="text-gray-400 text-xs md:text-sm mt-2">The spectrometer is used to analyze the chemical composition of molten metal. It ensures that material properties meet required specifications, helping maintain consistent casting quality.</p>
                     </div>
                 </div>
                  <!-- List Item -->
-                 <div class="flex gap-6 reveal">
-                    <span class="text-brand-orange text-3xl font-bold">6</span>
+                 <div class="flex gap-4 md:gap-6 reveal">
+                    <span class="text-brand-orange text-2xl md:text-3xl font-bold flex-shrink-0 w-8">6</span>
                     <div>
-                        <h3 class="text-xl font-bold text-white">Microscope</h3>
-                        <p class="text-gray-400 text-sm mt-2">Microscopic analysis helps examine metal structure and detect defects. This equipment supports quality assurance and metallurgical analysis.</p>
+                        <h3 class="text-lg md:text-xl font-bold text-white">Microscope</h3>
+                        <p class="text-gray-400 text-xs md:text-sm mt-2">Microscopic analysis helps examine metal structure and detect defects. This equipment supports quality assurance and metallurgical analysis.</p>
                     </div>
                 </div>
                  <!-- List Item -->
-                 <div class="flex gap-6 reveal">
-                    <span class="text-blue-500 text-3xl font-bold">7</span>
+                 <div class="flex gap-4 md:gap-6 reveal">
+                    <span class="text-blue-500 text-2xl md:text-3xl font-bold flex-shrink-0 w-8">7</span>
                     <div>
-                        <h3 class="text-xl font-bold text-white">Hardness Tester</h3>
-                        <p class="text-gray-400 text-sm mt-2">Microscopic analysis helps examine metal structure and detect defects. This equipment supports quality assurance and metallurgical analysis.</p>
+                        <h3 class="text-lg md:text-xl font-bold text-white">Hardness Tester</h3>
+                        <p class="text-gray-400 text-xs md:text-sm mt-2">Microscopic analysis helps examine metal structure and detect defects. This equipment supports quality assurance and metallurgical analysis.</p>
                     </div>
                 </div>
                  <!-- List Item -->
-                 <div class="flex gap-6 reveal">
-                    <span class="text-brand-card2 text-3xl font-bold">8</span>
+                 <div class="flex gap-4 md:gap-6 reveal">
+                    <span class="text-brand-card2 text-2xl md:text-3xl font-bold flex-shrink-0 w-8">8</span>
                     <div>
-                        <h3 class="text-xl font-bold text-white">Pyrometer</h3>
-                        <p class="text-gray-400 text-sm mt-2">The pyrometer measures molten metal temperature accurately. Proper temperature control is critical to avoiding defects and ensuring sound castings.</p>
+                        <h3 class="text-lg md:text-xl font-bold text-white">Pyrometer</h3>
+                        <p class="text-gray-400 text-xs md:text-sm mt-2">The pyrometer measures molten metal temperature accurately. Proper temperature control is critical to avoiding defects and ensuring sound castings.</p>
                     </div>
                 </div>
                  <!-- List Item -->
-                 <div class="flex gap-6 reveal">
-                    <span class="text-brand-card4 text-3xl font-bold">9</span>
+                 <div class="flex gap-4 md:gap-6 reveal">
+                    <span class="text-brand-card4 text-2xl md:text-3xl font-bold flex-shrink-0 w-8">9</span>
                     <div>
-                        <h3 class="text-xl font-bold text-white">Generator</h3>
-                        <p class="text-gray-400 text-sm mt-2">The generator provides backup power to ensure uninterrupted production during power outages, maintaining delivery commitments and operational efficiency.</p>
+                        <h3 class="text-lg md:text-xl font-bold text-white">Generator</h3>
+                        <p class="text-gray-400 text-xs md:text-sm mt-2">The generator provides backup power to ensure uninterrupted production during power outages, maintaining delivery commitments and operational efficiency.</p>
                     </div>
                 </div>
                  <!-- List Item -->
-                 <div class="flex gap-6 reveal">
-                    <span class="text-brand-orange text-3xl font-bold">10</span>
+                 <div class="flex gap-4 md:gap-6 reveal">
+                    <span class="text-brand-orange text-2xl md:text-3xl font-bold flex-shrink-0 w-8">10</span>
                     <div>
-                        <h3 class="text-xl font-bold text-white">CE Meter</h3>
-                        <p class="text-gray-400 text-sm mt-2">The CE meter helps monitor carbon equivalent levels in molten iron, ensuring correct material properties and reducing casting defects.</p>
+                        <h3 class="text-lg md:text-xl font-bold text-white">CE Meter</h3>
+                        <p class="text-gray-400 text-xs md:text-sm mt-2">The CE meter helps monitor carbon equivalent levels in molten iron, ensuring correct material properties and reducing casting defects.</p>
                     </div>
                 </div>
                  <!-- List Item -->
-                 <div class="flex gap-6 reveal">
-                    <span class="text-blue-500 text-3xl font-bold">11</span>
+                 <div class="flex gap-4 md:gap-6 reveal">
+                    <span class="text-blue-500 text-2xl md:text-3xl font-bold flex-shrink-0 w-8">11</span>
                     <div>
-                        <h3 class="text-xl font-bold text-white">Shot Blasting Machine</h3>
-                        <p class="text-gray-400 text-sm mt-2">Shot blasting cleans casting surfaces by removing sand and scale. This process improves surface finish and prepares components for machining or dispatch.</p>
+                        <h3 class="text-lg md:text-xl font-bold text-white">Shot Blasting Machine</h3>
+                        <p class="text-gray-400 text-xs md:text-sm mt-2">Shot blasting cleans casting surfaces by removing sand and scale. This process improves surface finish and prepares components for machining or dispatch.</p>
                     </div>
                 </div>
                  <!-- List Item -->
-                 <div class="flex gap-6 reveal">
-                    <span class="text-brand-card2 text-3xl font-bold">12</span>
+                 <div class="flex gap-4 md:gap-6 reveal">
+                    <span class="text-brand-card2 text-2xl md:text-3xl font-bold flex-shrink-0 w-8">12</span>
                     <div>
-                        <h3 class="text-xl font-bold text-white">Sand Crusher Machine</h3>
-                        <p class="text-gray-400 text-sm mt-2">The sand crusher recycles used sand, reducing material wastage and ensuring consistent sand quality for repeated moulding operations.</p>
+                        <h3 class="text-lg md:text-xl font-bold text-white">Sand Crusher Machine</h3>
+                        <p class="text-gray-400 text-xs md:text-sm mt-2">The sand crusher recycles used sand, reducing material wastage and ensuring consistent sand quality for repeated moulding operations.</p>
                     </div>
                 </div>
             </div>
@@ -558,106 +638,106 @@
     </section>
 
     <!-- PRODUCTS -->
-    <section id="products" class="py-20 bg-black text-white">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl md:text-4xl font-sans font-bold mb-12 text-brand-orange reveal">OUR PRODUCTS</h2>
+    <section id="products" class="py-12 md:py-20 bg-black text-white">
+        <div class="container mx-auto px-4 md:px-6">
+            <h2 class="text-2xl md:text-3xl lg:text-4xl font-sans font-bold mb-8 md:mb-12 text-brand-orange reveal">OUR PRODUCTS</h2>
             
-            <div class="rounded-xl overflow-hidden shadow-2xl mb-16 reveal">
+            <div class="rounded-xl overflow-hidden shadow-2xl mb-8 md:mb-16 reveal">
                 <img src="assets/ourproducts.jpg" alt="Products" class="w-full h-auto object-cover">
             </div>
 
-            <div class="grid md:grid-cols-2 gap-x-12 gap-y-6 max-w-4xl">
-                <div class="flex gap-4 items-center reveal">
-                    <span class="text-brand-card4 text-2xl font-bold w-8">1</span>
-                    <span class="text-lg">Crankshafts</span>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-x-12 md:gap-y-6 max-w-4xl">
+                <div class="flex gap-3 md:gap-4 items-center reveal">
+                    <span class="text-brand-card4 text-xl md:text-2xl font-bold w-6 md:w-8">1</span>
+                    <span class="text-base md:text-lg">Crankshafts</span>
                 </div>
-                <div class="flex gap-4 items-center reveal delay-100">
-                    <span class="text-brand-orange text-2xl font-bold w-8">2</span>
-                    <span class="text-lg">Connecting rods</span>
+                <div class="flex gap-3 md:gap-4 items-center reveal delay-100">
+                    <span class="text-brand-orange text-xl md:text-2xl font-bold w-6 md:w-8">2</span>
+                    <span class="text-base md:text-lg">Connecting rods</span>
                 </div>
-                <div class="flex gap-4 items-center reveal delay-200">
-                    <span class="text-blue-500 text-2xl font-bold w-8">3</span>
-                    <span class="text-lg">Rollers</span>
+                <div class="flex gap-3 md:gap-4 items-center reveal delay-200">
+                    <span class="text-blue-500 text-xl md:text-2xl font-bold w-6 md:w-8">3</span>
+                    <span class="text-base md:text-lg">Rollers</span>
                 </div>
-                <div class="flex gap-4 items-center reveal delay-300">
-                    <span class="text-brand-card2 text-2xl font-bold w-8">4</span>
-                    <span class="text-lg">Chain pulleys</span>
+                <div class="flex gap-3 md:gap-4 items-center reveal delay-300">
+                    <span class="text-brand-card2 text-xl md:text-2xl font-bold w-6 md:w-8">4</span>
+                    <span class="text-base md:text-lg">Chain pulleys</span>
                 </div>
-                <div class="flex gap-4 items-center reveal">
-                    <span class="text-brand-card4 text-2xl font-bold w-8">5</span>
-                    <span class="text-lg">Water and Vacuum pumps</span>
+                <div class="flex gap-3 md:gap-4 items-center reveal">
+                    <span class="text-brand-card4 text-xl md:text-2xl font-bold w-6 md:w-8">5</span>
+                    <span class="text-base md:text-lg">Water and Vacuum pumps</span>
                 </div>
-                <div class="flex gap-4 items-center reveal delay-100">
-                    <span class="text-brand-orange text-2xl font-bold w-8">6</span>
-                    <span class="text-lg">Helical rotors</span>
+                <div class="flex gap-3 md:gap-4 items-center reveal delay-100">
+                    <span class="text-brand-orange text-xl md:text-2xl font-bold w-6 md:w-8">6</span>
+                    <span class="text-base md:text-lg">Helical rotors</span>
                 </div>
-                <div class="flex gap-4 items-center reveal delay-200">
-                    <span class="text-blue-500 text-2xl font-bold w-8">7</span>
-                    <span class="text-lg">Gears</span>
+                <div class="flex gap-3 md:gap-4 items-center reveal delay-200">
+                    <span class="text-blue-500 text-xl md:text-2xl font-bold w-6 md:w-8">7</span>
+                    <span class="text-base md:text-lg">Gears</span>
                 </div>
-                <div class="flex gap-4 items-center reveal delay-300">
-                    <span class="text-brand-card2 text-2xl font-bold w-8">8</span>
-                    <span class="text-lg">Piston and Engine Components</span>
+                <div class="flex gap-3 md:gap-4 items-center reveal delay-300">
+                    <span class="text-brand-card2 text-xl md:text-2xl font-bold w-6 md:w-8">8</span>
+                    <span class="text-base md:text-lg">Piston and Engine Components</span>
                 </div>
-                <div class="flex gap-4 items-center reveal">
-                    <span class="text-brand-card4 text-2xl font-bold w-8">9</span>
-                    <span class="text-lg">Automobile components</span>
+                <div class="flex gap-3 md:gap-4 items-center reveal">
+                    <span class="text-brand-card4 text-xl md:text-2xl font-bold w-6 md:w-8">9</span>
+                    <span class="text-base md:text-lg">Automobile components</span>
                 </div>
-                <div class="flex gap-4 items-center reveal delay-100">
-                    <span class="text-brand-orange text-2xl font-bold w-8">10</span>
-                    <span class="text-lg">Agricultural components</span>
+                <div class="flex gap-3 md:gap-4 items-center reveal delay-100">
+                    <span class="text-brand-orange text-xl md:text-2xl font-bold w-6 md:w-8">10</span>
+                    <span class="text-base md:text-lg">Agricultural components</span>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- FUTURE PLANS -->
-    <section class="py-20 bg-brand-cream">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl md:text-4xl font-sans font-bold mb-12 text-gray-900 border-l-4 border-brand-orange pl-4 reveal">Our Future Growth Plans</h2>
+    <section class="py-12 md:py-20 bg-brand-cream">
+        <div class="container mx-auto px-4 md:px-6">
+            <h2 class="text-2xl md:text-3xl lg:text-4xl font-sans font-bold mb-8 md:mb-12 text-gray-900 border-l-4 border-brand-orange pl-4 reveal">Our Future Growth Plans</h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="bg-brand-card1 p-8 rounded-2xl reveal hover:-translate-y-2 transition duration-300">
-                    <h3 class="text-xl font-bold mb-4 uppercase text-black">Focus on New Product Development</h3>
-                    <p class="text-sm text-black">Shivesh Castings aims to continuously develop new casting products to meet evolving industry demands. By adopting improved designs, materials, and processes, the company plans to expand its product portfolio and cater to diverse engineering applications.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+                <div class="commitment-card bg-brand-card1 p-6 md:p-8 rounded-2xl reveal hover:-translate-y-2 transition duration-300">
+                    <h3 class="text-lg md:text-xl font-bold mb-4 uppercase text-black">Focus on New Product Development</h3>
+                    <p class="text-xs md:text-sm text-black">Shivesh Castings aims to continuously develop new casting products to meet evolving industry demands. By adopting improved designs, materials, and processes, the company plans to expand its product portfolio and cater to diverse engineering applications.</p>
                 </div>
-                <div class="bg-brand-card2 p-8 rounded-2xl reveal delay-100 hover:-translate-y-2 transition duration-300">
-                    <h3 class="text-xl font-bold mb-4 uppercase text-black">To Maximise Productivity</h3>
-                    <p class="text-sm text-black">Improving productivity is a key future objective. By optimizing workflows, upgrading machinery, and enhancing workforce skills, Shivesh Castings strives to increase output while maintaining quality and cost efficiency.</p>
+                <div class="commitment-card bg-brand-card2 p-6 md:p-8 rounded-2xl reveal delay-100 hover:-translate-y-2 transition duration-300">
+                    <h3 class="text-lg md:text-xl font-bold mb-4 uppercase text-black">To Maximise Productivity</h3>
+                    <p class="text-xs md:text-sm text-black">Improving productivity is a key future objective. By optimizing workflows, upgrading machinery, and enhancing workforce skills, Shivesh Castings strives to increase output while maintaining quality and cost efficiency.</p>
                 </div>
-                <div class="bg-brand-card3 p-8 rounded-2xl reveal delay-200 hover:-translate-y-2 transition duration-300">
-                    <h3 class="text-xl font-bold mb-4 uppercase text-black">To Build Infrastructure</h3>
-                    <p class="text-sm text-black">The company plans to strengthen its infrastructure by investing in advanced machinery, expanded facilities, and improved process automation. This growth will support higher production volumes and enhanced quality standards.</p>
+                <div class="commitment-card bg-brand-card3 p-6 md:p-8 rounded-2xl reveal delay-200 hover:-translate-y-2 transition duration-300">
+                    <h3 class="text-lg md:text-xl font-bold mb-4 uppercase text-black">To Build Infrastructure</h3>
+                    <p class="text-xs md:text-sm text-black">The company plans to strengthen its infrastructure by investing in advanced machinery, expanded facilities, and improved process automation. This growth will support higher production volumes and enhanced quality standards.</p>
                 </div>
-                <div class="bg-brand-card4 p-8 rounded-2xl reveal delay-300 hover:-translate-y-2 transition duration-300">
-                    <h3 class="text-xl font-bold mb-4 uppercase text-black">To Deliver Machined Components</h3>
-                    <p class="text-sm text-black">Shivesh Castings aims to move beyond raw castings by supplying machined components. This value-added service will provide customers with ready-to-use parts, reducing lead time and improving overall customer convenience.</p>
+                <div class="commitment-card bg-brand-card4 p-6 md:p-8 rounded-2xl reveal delay-300 hover:-translate-y-2 transition duration-300">
+                    <h3 class="text-lg md:text-xl font-bold mb-4 uppercase text-black">To Deliver Machined Components</h3>
+                    <p class="text-xs md:text-sm text-black">Shivesh Castings aims to move beyond raw castings by supplying machined components. This value-added service will provide customers with ready-to-use parts, reducing lead time and improving overall customer convenience.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- CONTACT -->
-    <section id="contact" class="py-20 bg-black text-white">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl md:text-4xl font-sans font-bold mb-12 text-brand-orange reveal">CONTACT US</h2>
+    <section id="contact" class="py-12 md:py-20 bg-black text-white">
+        <div class="container mx-auto px-4 md:px-6">
+            <h2 class="text-2xl md:text-3xl lg:text-4xl font-sans font-bold mb-8 md:mb-12 text-brand-orange reveal">CONTACT US</h2>
             
-            <div class="grid md:grid-cols-2 gap-12">
+            <div class="grid md:grid-cols-2 gap-8 md:gap-12">
                 <!-- Form -->
-                <div class="bg-brand-cream text-black p-8 rounded-lg reveal">
-                    <h3 class="text-2xl font-bold mb-6">Send Message</h3>
-                    <form onsubmit="sendWhatsApp(event)" class="space-y-6">
+                <div class="bg-brand-cream text-black p-6 md:p-8 rounded-lg reveal">
+                    <h3 class="text-xl md:text-2xl font-bold mb-6">Send Message</h3>
+                    <form onsubmit="sendWhatsApp(event)" class="space-y-4 md:space-y-6">
                         <div>
                             <label class="block text-sm mb-2 font-semibold">Name *</label>
-                            <input type="text" id="name" required class="w-full bg-transparent border-b-2 border-gray-400 focus:border-brand-orange outline-none py-2 transition">
+                            <input type="text" id="name" required class="w-full bg-transparent border-b-2 border-gray-400 focus:border-brand-orange outline-none py-2 transition text-base">
                         </div>
                         <div>
                             <label class="block text-sm mb-2 font-semibold">Email *</label>
-                            <input type="email" id="email" required class="w-full bg-transparent border-b-2 border-gray-400 focus:border-brand-orange outline-none py-2 transition">
+                            <input type="email" id="email" required class="w-full bg-transparent border-b-2 border-gray-400 focus:border-brand-orange outline-none py-2 transition text-base">
                         </div>
                         <div>
                             <label class="block text-sm mb-2 font-semibold">Message *</label>
-                            <textarea id="message" required rows="3" class="w-full bg-transparent border-b-2 border-gray-400 focus:border-brand-orange outline-none py-2 transition"></textarea>
+                            <textarea id="message" required rows="3" class="w-full bg-transparent border-b-2 border-gray-400 focus:border-brand-orange outline-none py-2 transition text-base resize-none"></textarea>
                         </div>
                         <button type="submit" class="w-full bg-white hover:bg-brand-orange hover:text-white text-black font-bold py-3 rounded-full border border-gray-300 transition duration-300">
                             Send Message
@@ -667,29 +747,29 @@
 
                 <!-- Info -->
                 <div class="space-y-6 reveal delay-100">
-                    <div class="bg-brand-cream text-black p-6 rounded-lg">
-                        <h3 class="text-2xl font-bold mb-2">Get in Touch</h3>
-                        <p class="text-sm mb-6">Have a question or need a quote? Reach out to us directly. We typically respond within 24 hours.</p>
+                    <div class="bg-brand-cream text-black p-4 md:p-6 rounded-lg">
+                        <h3 class="text-xl md:text-2xl font-bold mb-2">Get in Touch</h3>
+                        <p class="text-xs md:text-sm mb-4 md:mb-6">Have a question or need a quote? Reach out to us directly. We typically respond within 24 hours.</p>
                         
-                        <div class="space-y-4">
-                            <a href="mailto:shiveshcastings@gmail.com" class="flex items-center gap-4 hover:text-brand-orange transition">
-                                <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow text-brand-orange">
-                                    <i class="fas fa-envelope"></i>
+                        <div class="space-y-3 md:space-y-4">
+                            <a href="mailto:shiveshcastings@gmail.com" class="flex items-center gap-3 md:gap-4 hover:text-brand-orange transition">
+                                <div class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-white flex items-center justify-center shadow text-brand-orange flex-shrink-0">
+                                    <i class="fas fa-envelope text-sm md:text-base"></i>
                                 </div>
-                                <span class="font-semibold">shiveshcastings@gmail.com</span>
+                                <span class="font-semibold text-sm md:text-base break-all">shiveshcastings@gmail.com</span>
                             </a>
                             
-                            <a href="tel:+919916771472" class="flex items-center gap-4 hover:text-brand-orange transition">
-                                <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow text-brand-orange">
-                                    <i class="fas fa-phone-alt"></i>
+                            <a href="tel:+919916771472" class="flex items-center gap-3 md:gap-4 hover:text-brand-orange transition">
+                                <div class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-white flex items-center justify-center shadow text-brand-orange flex-shrink-0">
+                                    <i class="fas fa-phone-alt text-sm md:text-base"></i>
                                 </div>
-                                <span class="font-semibold">+91 9916771472</span>
+                                <span class="font-semibold text-sm md:text-base">+91 9916771472</span>
                             </a>
                         </div>
                     </div>
 
                     <!-- Map -->
-                    <div class="rounded-lg overflow-hidden h-64 shadow-lg border-4 border-brand-cream">
+                    <div class="rounded-lg overflow-hidden h-48 md:h-64 shadow-lg border-4 border-brand-cream bg-gray-200">
                         <iframe 
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3838.1234567890123!2d74.5!3d15.85!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTXCsDUxJzAwLjAiTiA3NMKwMzAnMDAuMCJF!5e0!3m2!1sen!2sin!4v1234567890" 
                             width="100%" 
@@ -705,49 +785,48 @@
     </section>
 
     <!-- FOOTER -->
-    <footer class="bg-black text-white py-12 border-t border-gray-800">
-        <div class="container mx-auto px-6 grid md:grid-cols-3 gap-12">
+    <footer class="bg-black text-white py-8 md:py-12 border-t border-gray-800">
+        <div class="container mx-auto px-4 md:px-6 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
             <div>
-                <h3 class="text-2xl font-bold mb-4 font-sans">SHIVESH CASTINGS</h3>
-                <p class="text-gray-400 text-sm leading-relaxed">
+                <h3 class="text-xl md:text-2xl font-bold mb-4 font-sans">SHIVESH CASTINGS</h3>
+                <p class="text-gray-400 text-xs md:text-sm leading-relaxed">
                     Shivesh Castings is an ISO 9001:2015 certified foundry (metal casting factory) in Belgaum, India. Engineering strength into every casting since inception.
                 </p>
             </div>
             
             <div>
-                <h3 class="text-xl font-bold mb-4 text-brand-orange">QUICK LINKS</h3>
-                <ul class="space-y-2 text-gray-400">
+                <h3 class="text-lg md:text-xl font-bold mb-4 text-brand-orange">QUICK LINKS</h3>
+                <ul class="space-y-2 text-gray-400 text-sm">
                     <li><a href="#home" class="hover:text-white transition">Home</a></li>
                     <li><a href="#about" class="hover:text-white transition">About us</a></li>
-                    <li><a href="#certificates" class="hover:text-white transition">Certificates</a></li>
                     <li><a href="#products" class="hover:text-white transition">Products</a></li>
                     <li><a href="#contact" class="hover:text-white transition">Contact</a></li>
                 </ul>
             </div>
             
             <div>
-                <h3 class="text-xl font-bold mb-4 text-brand-orange">CONTACT INFORMATION</h3>
-                <ul class="space-y-3 text-gray-400 text-sm">
-                    <li class="flex items-start gap-3">
-                        <i class="fas fa-envelope mt-1 text-brand-orange"></i>
-                        <a href="mailto:shiveshcastings@gmail.com" class="hover:text-white">shiveshcastings@gmail.com</a>
+                <h3 class="text-lg md:text-xl font-bold mb-4 text-brand-orange">CONTACT INFORMATION</h3>
+                <ul class="space-y-2 md:space-y-3 text-gray-400 text-xs md:text-sm">
+                    <li class="flex items-start gap-2 md:gap-3">
+                        <i class="fas fa-envelope mt-1 text-brand-orange flex-shrink-0"></i>
+                        <a href="mailto:shiveshcastings@gmail.com" class="hover:text-white break-all">shiveshcastings@gmail.com</a>
                     </li>
-                    <li class="flex items-start gap-3">
-                        <i class="fas fa-phone mt-1 text-brand-orange"></i>
+                    <li class="flex items-start gap-2 md:gap-3">
+                        <i class="fas fa-phone mt-1 text-brand-orange flex-shrink-0"></i>
                         <a href="tel:+919916771472" class="hover:text-white">+91 9916771472</a>
                     </li>
-                    <li class="flex items-start gap-3">
-                        <i class="fab fa-instagram mt-1 text-brand-orange"></i>
+                    <li class="flex items-start gap-2 md:gap-3">
+                        <i class="fab fa-instagram mt-1 text-brand-orange flex-shrink-0"></i>
                         <a href="https://instagram.com/shiveshcastings" target="_blank" class="hover:text-white">@shiveshcastings</a>
                     </li>
-                    <li class="flex items-start gap-3">
-                        <i class="fas fa-map-marker-alt mt-1 text-brand-orange"></i>
+                    <li class="flex items-start gap-2 md:gap-3">
+                        <i class="fas fa-map-marker-alt mt-1 text-brand-orange flex-shrink-0"></i>
                         <span>Plot No 141/142<br>Rawoot compound<br>Udyambag Belgaum</span>
                     </li>
                 </ul>
             </div>
         </div>
-        <div class="container mx-auto px-6 mt-12 pt-8 border-t border-gray-800 text-center text-gray-500 text-sm">
+        <div class="container mx-auto px-4 md:px-6 mt-8 md:mt-12 pt-6 md:pt-8 border-t border-gray-800 text-center text-gray-500 text-xs md:text-sm">
             &copy; 2026 Shivesh Castings. All rights reserved.
         </div>
     </footer>
@@ -803,8 +882,11 @@
                 currentSlide = (currentSlide + 1) % heroImages.length;
                 
                 // Update classes for fade
-                document.getElementById(`slide-${prev}`).classList.remove('active');
-                document.getElementById(`slide-${currentSlide}`).classList.add('active');
+                const prevSlide = document.getElementById(`slide-${prev}`);
+                const nextSlide = document.getElementById(`slide-${currentSlide}`);
+                
+                if (prevSlide) prevSlide.classList.remove('active');
+                if (nextSlide) nextSlide.classList.add('active');
             }, 6000); // Change every 6 seconds for slow transition
         }
 
@@ -818,8 +900,8 @@
             for(let i=0; i<2; i++) {
                 for(let j=1; j<=totalClients; j++) {
                     html += `
-                        <div class="flex-shrink-0 w-32 h-20 bg-white rounded shadow-md flex items-center justify-center p-2 mx-2 hover:shadow-lg transition duration-300">
-                            <img src="assets/client${j}.jpg" alt="Client ${j}" class="max-w-full max-h-full object-contain">
+                        <div class="flex-shrink-0 w-24 md:w-32 h-16 md:h-20 bg-white rounded shadow-md flex items-center justify-center p-2 mx-2 hover:shadow-lg transition duration-300">
+                            <img src="assets/client${j}.jpg" alt="Client ${j}" class="max-w-full max-h-full object-contain" loading="lazy">
                         </div>
                     `;
                 }
@@ -830,7 +912,8 @@
 
         // 4. SCROLL REVEAL ANIMATION
         const observerOptions = {
-            threshold: 0.1
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
         };
 
         const observer = new IntersectionObserver((entries) => {
@@ -894,6 +977,12 @@
                     link.classList.add('active');
                 }
             });
+            
+            // Close mobile menu on scroll
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (!mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+            }
         });
 
         // 7. WHATSAPP FUNCTIONALITY
@@ -913,10 +1002,43 @@
         const btn = document.getElementById('mobile-menu-btn');
         const menu = document.getElementById('mobile-menu');
 
-        btn.addEventListener('click', () => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
             menu.classList.toggle('hidden');
         });
 
+        // Close mobile menu when clicking a link
+        menu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!menu.contains(e.target) && !btn.contains(e.target)) {
+                menu.classList.add('hidden');
+            }
+        });
+
+        // 9. FIX HERO HEIGHT ON RESIZE (Mobile viewport height issue)
+        function setHeroHeight() {
+            const hero = document.getElementById('home');
+            const navHeight = document.getElementById('navbar').offsetHeight;
+            const topBarHeight = document.querySelector('.top-bar').offsetHeight;
+            const totalOffset = navHeight + topBarHeight;
+            
+            if (window.innerWidth <= 768) {
+                hero.style.height = `calc(100vh - ${totalOffset}px)`;
+                hero.style.minHeight = '500px';
+            } else {
+                hero.style.height = `calc(100vh - ${totalOffset}px)`;
+                hero.style.minHeight = 'auto';
+            }
+        }
+
+        window.addEventListener('resize', setHeroHeight);
+        window.addEventListener('load', setHeroHeight);
     </script>
 </body>
 </html>
